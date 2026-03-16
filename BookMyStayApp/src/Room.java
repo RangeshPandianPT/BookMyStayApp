@@ -44,4 +44,3 @@ public abstract class Room {
         System.out.println("Price per night: " + pricePerNight);
     }
 }
-
