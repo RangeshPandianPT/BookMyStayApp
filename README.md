@@ -1,11 +1,11 @@
-# BookMyStayApp 🏨
+# BookMyStayApp 
 **Book My Stay** is a simple, structured Java-based Hotel Booking Management System designed to demonstrate core Object-Oriented Programming (OOP) concepts step-by-step through distinct use cases.
 
 ## 📖 Overview
 
 This project simulates a hotel booking engine and tracks rooms based on categories like **Single**, **Double**, and **Suite**. It uses a step-by-step learning approach where each core feature of the hotel management system is separated into logical "Use Cases".
 
-### 🚀 Use Cases Implemented
+### Use Cases Implemented
 
 1. **Use Case 1: Application Entry & Welcome Message**  
    *Class:* `BookMyStayApp.java`  
@@ -23,7 +23,7 @@ This project simulates a hotel booking engine and tracks rooms based on categori
    *Classes:* `UseCase4RoomSearch.java`, `RoomSearchService.java`  
    *Description:* Implements searching logic. Allows users to query available rooms based on different criteria like room type or price preferences.
 
-## 🗂️ Project Structure
+##  Project Structure
 
 ```text
 BookMyStayApp/
@@ -38,7 +38,7 @@ BookMyStayApp/
 │   └── UseCase4RoomSearch.java           # Demo for Use Case 4
 ```
 
-## 🛠️ How to Run
+##  How to Run
 
 Ensure you have **Java (JDK 8 or higher)** installed on your system.
 
@@ -66,13 +66,13 @@ java UseCase2RoomInitialization
 java UseCase4RoomSearch
 ```
 
-## 🌟 Concepts Covered
+##  Concepts Covered
 
 - **Encapsulation:** Protecting data using private fields and getters/setters.
 - **Inheritance:** `SingleRoom`, `DoubleRoom`, and `SuiteRoom` extending the base `Room` class.
 - **Polymorphism:** Handling multiple room types seamlessly in the inventory.
 - **Separation of Concerns:** Distinct services to handle Inventory vs. Searching.
 
-## 🤝 Contributing
+##  Contributing
 Contributions, issues, and feature requests are welcome! Feel free to modify the system to add features like *Customer Booking*, *Payment Processing*, or *Date Tracking!*
 
