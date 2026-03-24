@@ -1,5 +1,4 @@
-public class Reservation {
-
+class Reservation {
     private String guestName;
     private String roomType;
 
