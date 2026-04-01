@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class RoomInventory {
+class RoomInventory {
 
     private Map<String, Integer> rooms = new HashMap<>();
 
@@ -11,27 +11,22 @@ public class RoomInventory {
         rooms.put("Suite", 1);
     }
 
-    public boolean isValidRoomType(String roomType) {
-        return rooms.containsKey(roomType);
+    // Critical section
+    public synchronized boolean bookRoom(String roomType) {
+
+        int available = rooms.getOrDefault(roomType, 0);
+
+        if (available > 0) {
+            // Simulate delay (to expose race conditions if unsynchronized)
+            try { Thread.sleep(100); } catch (InterruptedException e) {}
+
+            rooms.put(roomType, available - 1);
+            return true;
+        }
+        return false;
     }
 
-    public int getAvailableRooms(String roomType) {
+    public synchronized int getAvailableRooms(String roomType) {
         return rooms.getOrDefault(roomType, 0);
     }
-
-    public void bookRoom(String roomType) throws InvalidBookingException {
-        int available = getAvailableRooms(roomType);
-
-        if (available <= 0) {
-            throw new InvalidBookingException("Cannot book. No rooms available.");
-        }
-
-        rooms.put(roomType, available - 1);
-    }
-    public void releaseRoom(String roomType) {
-    rooms.put(roomType, rooms.getOrDefault(roomType, 0) + 1);
-}
-public void displayAvailability(String roomType) {
-    System.out.println("Updated " + roomType + " Room Availability: " + getAvailableRooms(roomType));
-}
 }
