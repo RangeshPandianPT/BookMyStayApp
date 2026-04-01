@@ -1,24 +1,39 @@
+import java.util.Scanner;
+
 public class BookMyStayApp {
 
     public static void main(String[] args) {
 
-        BookingHistory history = new BookingHistory();
-        BookingReportService reportService = new BookingReportService();
+        System.out.println("Booking Validation");
 
-        // Simulating confirmed bookings (from Use Case 6)
-        Reservation r1 = new Reservation("Single-1", "Abhi", "Single");
-        Reservation r2 = new Reservation("Single-2", "Suba", "Single");
-        Reservation r3 = new Reservation("Suite-1", "Vannathi", "Suite");
+        Scanner scanner = new Scanner(System.in);
 
-        // Store in history
-        history.addReservation(r1);
-        history.addReservation(r2);
-        history.addReservation(r3);
+        RoomInventory inventory = new RoomInventory();
+        ReservationValidator validator = new ReservationValidator();
+        BookingRequestQueue bookingQueue = new BookingRequestQueue();
 
-        // Admin views history
-        reportService.printAllBookings(history.getAllReservations());
+        try {
+            System.out.print("Enter guest name: ");
+            String guestName = scanner.nextLine();
 
-        // Admin generates report
-        reportService.generateSummary(history.getAllReservations());
+            System.out.print("Enter room type (Single/Double/Suite): ");
+            String roomType = scanner.nextLine();
+
+            // Validate input
+            validator.validate(guestName, roomType, inventory);
+
+            // Add to queue (simulated)
+            bookingQueue.addRequest(guestName + " - " + roomType);
+
+            // Process booking
+            inventory.bookRoom(roomType);
+
+            System.out.println("Booking successful!");
+
+        } catch (InvalidBookingException e) {
+            System.out.println("Booking failed: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
     }
 }
