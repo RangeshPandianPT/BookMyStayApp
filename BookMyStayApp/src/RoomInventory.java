@@ -28,4 +28,10 @@ public class RoomInventory {
 
         rooms.put(roomType, available - 1);
     }
+    public void releaseRoom(String roomType) {
+    rooms.put(roomType, rooms.getOrDefault(roomType, 0) + 1);
+}
+public void displayAvailability(String roomType) {
+    System.out.println("Updated " + roomType + " Room Availability: " + getAvailableRooms(roomType));
+}
 }
