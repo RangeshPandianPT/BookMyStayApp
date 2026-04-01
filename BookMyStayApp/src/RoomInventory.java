@@ -1,20 +1,31 @@
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-class RoomInventory {
+public class RoomInventory {
 
-    private Map<String, Integer> rooms;
+    private Map<String, Integer> rooms = new HashMap<>();
 
     public RoomInventory() {
-        rooms = new HashMap<>();
         rooms.put("Single", 2);
+        rooms.put("Double", 2);
         rooms.put("Suite", 1);
     }
 
-    public boolean isAvailable(String roomType) {
-        return rooms.getOrDefault(roomType, 0) > 0;
+    public boolean isValidRoomType(String roomType) {
+        return rooms.containsKey(roomType);
     }
 
-    public void decrement(String roomType) {
-        rooms.put(roomType, rooms.get(roomType) - 1);
+    public int getAvailableRooms(String roomType) {
+        return rooms.getOrDefault(roomType, 0);
+    }
+
+    public void bookRoom(String roomType) throws InvalidBookingException {
+        int available = getAvailableRooms(roomType);
+
+        if (available <= 0) {
+            throw new InvalidBookingException("Cannot book. No rooms available.");
+        }
+
+        rooms.put(roomType, available - 1);
     }
 }
